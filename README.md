@@ -40,5 +40,7 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
 
 
 ## Website
+De website heeft zowel een login als registratie form, met een stijlgeving.
+![image](https://user-images.githubusercontent.com/94957070/209861862-524d5539-aadf-4193-9c7e-02437e3104af.png)
 
 
