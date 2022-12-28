@@ -21,7 +21,7 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
 * Front-End Links
     * [Front-End Repository](https://github.com/ArneVangheel/website-eindproject)
     * [Hosted Front-End ](https://api-eindproject.netlify.app/)
-    * 
+   
 ## Uitbreidingen
 (Alle algemene eisen zijn behaald)
 
