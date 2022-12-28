@@ -8,13 +8,13 @@ Hiervoor heb ik gebruik gemaakt van 1 post 2 get.
 > GET "/customers" Dit geeft een lijst van alle klanten accounts.<br>
 > GET "/customer/{user_id}" Hiermee kan je van een bepaalde user (via de userid) gegevens opvragen, zoals email, bestellingen, naam, etc.<br>
 > POST "/customers/{customer_id}/orders" Hiermee kan ik een order aanmaken op de naam van een bepaalde klant via id en het product kiezen.<br>
-> GET "/orders" Dit laat alle orders zien die er gemaakt zijn.
+> GET "/orders" Dit laat alle orders zien die er gemaakt zijn.<br>
 > PUT "/orders/{order_id}" Hiermee kan ik een bepaalde order aanpassen als je de orderid meegeeft.<br>
-> DELETE "/orders/{order_id}" Hiermee kan je een order deleten aan de hand van een ordernummer.
-> GET "/products" Dit laat alle mogelijke producten zien.
-> POST "/products" Hiermee kan je een nieuw product aanmaken.
-> POST "/token" Hiermee kan je een token opvragen via bepaalde inloggegevens, deze token kan je gebruiken om bepaalde requests te doen.
-> GET "/users/me" Dit laat alle data zien van de gebruiken die is ingelogd via de token.
+> DELETE "/orders/{order_id}" Hiermee kan je een order deleten aan de hand van een ordernummer.<br>
+> GET "/products" Dit laat alle mogelijke producten zien.<br>
+> POST "/products" Hiermee kan je een nieuw product aanmaken.<br>
+> POST "/token" Hiermee kan je een token opvragen via bepaalde inloggegevens, deze token kan je gebruiken om bepaalde requests te doen.<br>
+> GET "/users/me" Dit laat alle data zien van de gebruiken die is ingelogd via de token.<br>
 
 ## Links
 * API Links
