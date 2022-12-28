@@ -25,6 +25,9 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
 
 
 ## OpenAPI Docs Screenshots
+![image](https://user-images.githubusercontent.com/94957070/209861070-1af2c4b3-6e3e-49ff-acc6-c8a1f58c7ce8.png)
+![screencapture-api-eindproject-arnevangheel-cloud-okteto-net-docs-2022-12-28-20_12_50](https://user-images.githubusercontent.com/94957070/209861294-3ac176b6-b41c-481c-a78b-f46d173fb0ea.png)
+
 
 
 ## Website
