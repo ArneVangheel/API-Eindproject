@@ -23,6 +23,8 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
     * [Hosted Front-End ](https://api-eindproject.netlify.app/)
     * 
 ## Uitbreidingen
+(Alle algemene eisen zijn behaald)
+
    * 3.1 (+15%) Maak een front-end voor je applicatie die al je GET endpoints en POST endpoints bevat.
       * 3.1.1 (+10%) Host de front-end op Netlify. 
       * 3.1.2 (+10%) Geef de front-end een leuke stijlgeving.
