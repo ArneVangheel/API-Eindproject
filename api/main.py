@@ -25,7 +25,8 @@ origins = [
     "https://localhost.tiangolo.com/",
     "http://127.0.0.1:5500/",
     "http://127.0.0.1:8080",
-    "https://delightful-kashata-80ca8b.netlify.app" #Online hosted netlify website
+    "https://delightful-kashata-80ca8b.netlify.app",
+    "https://delightful-kashata-80ca8b.netlify.app/",
 ]
 
 app.add_middleware(
