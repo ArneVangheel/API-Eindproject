@@ -4,9 +4,17 @@ Als project heb ik ervoor gekozen om een order api te maken.  Hierbij kan ik ver
 dit orderid kan de klant dan gebruiken om informatie van zijn order te bekijken. Ook is het mogelijk om alle bestellingen te bekijken met een filters zoals enkel van bestellingen van een bepaald persoon.
 Hiervoor heb ik gebruik gemaakt van 1 post 2 get. 
 
-> POST "/order" Hiermee kan ik een order aanmaken met informatie van de klant en het product.<br>
-> GET "/orders/{id}" Dit geeft de informatie weer van een bepaalde order die word ingegeven.<br>
-> GET "/all_orders" Dit laat alle orders zien die er gemaakt zijn, ook is het mogelijk om te filteren op voornaam.
+> POST "/register" Hiermee kan je een account aanmaken die je later kunt gebruiken om de token op te vragen.<br>
+> GET "/customers" Dit geeft een lijst van alle klanten accounts.<br>
+> GET "/customer/{user_id}" Hiermee kan je van een bepaalde user (via de userid) gegevens opvragen, zoals email, bestellingen, naam, etc.<br>
+> POST "/customers/{customer_id}/orders" Hiermee kan ik een order aanmaken op de naam van een bepaalde klant via id en het product kiezen.<br>
+> GET "/orders" Dit laat alle orders zien die er gemaakt zijn.
+> PUT "/orders/{order_id}" Hiermee kan ik een bepaalde order aanpassen als je de orderid meegeeft.<br>
+> DELETE "/orders/{order_id}" Hiermee kan je een order deleten aan de hand van een ordernummer.
+> GET "/products" Dit laat alle mogelijke producten zien.
+> POST "/products" Hiermee kan je een nieuw product aanmaken.
+> POST "/token" Hiermee kan je een token opvragen via bepaalde inloggegevens, deze token kan je gebruiken om bepaalde requests te doen.
+> GET "/users/me" Dit laat alle data zien van de gebruiken die is ingelogd via de token.
 
 ## Links
 * API Links
