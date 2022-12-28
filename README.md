@@ -21,13 +21,22 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
 * Front-End Links
     * [Front-End Repository](https://github.com/ArneVangheel/website-eindproject)
     * [Hosted Front-End ](https://api-eindproject.netlify.app/)
+    * 
+## Uitbreidingen
+   * 3.1 (+15%) Maak een front-end voor je applicatie die al je GET endpoints en POST endpoints bevat.
+      * 3.1.1 (+10%) Host de front-end op Netlify. 
+      * 3.1.2 (+10%) Geef de front-end een leuke stijlgeving.
+     
+## Eigen Aanvullingen 
+   * PUT/DELETE requesten staan ook op de website
+   * Meer endpoints dan nodig
+
 ## Postman (API Testing)
 
 
 ## OpenAPI Docs Screenshots
 ![image](https://user-images.githubusercontent.com/94957070/209861070-1af2c4b3-6e3e-49ff-acc6-c8a1f58c7ce8.png)
 ![screencapture-api-eindproject-arnevangheel-cloud-okteto-net-docs-2022-12-28-20_12_50](https://user-images.githubusercontent.com/94957070/209861294-3ac176b6-b41c-481c-a78b-f46d173fb0ea.png)
-
 
 
 ## Website
