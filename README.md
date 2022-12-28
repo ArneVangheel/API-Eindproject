@@ -36,7 +36,26 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
 ## Postman (API Testing)
 > POST "/register" Hiermee kan je een account aanmaken die je later kunt gebruiken om de token op te vragen.
 ![image](https://user-images.githubusercontent.com/94957070/209864116-5dbed187-1826-4a4c-abb8-5268b37708c3.png)
-
+> POST "/token" Hiermee kan je een token opvragen via bepaalde inloggegevens, deze token kan je gebruiken om bepaalde requests te doen.
+![image](https://user-images.githubusercontent.com/94957070/209864488-e8fde5f7-72d9-4954-ab02-3a3943f05baf.png)
+GET "/customers" Dit geeft een lijst van alle klanten accounts.
+![image](https://user-images.githubusercontent.com/94957070/209864704-7e72307f-401e-478f-8433-13f50230c946.png)
+> GET "/customer/{user_id}" Hiermee kan je van een bepaalde user (via de userid) gegevens opvragen, zoals email, bestellingen, naam, etc.
+![image](https://user-images.githubusercontent.com/94957070/209864755-6d46faf0-3889-41c1-ade9-0a4923319ebe.png)
+> POST "/customers/{customer_id}/orders" Hiermee kan ik een order aanmaken op de naam van een bepaalde klant via id en het product kiezen.
+![image](https://user-images.githubusercontent.com/94957070/209864936-a4ae5b03-f4ab-4d39-a9e1-a95f50644fd1.png)
+> GET "/orders" Dit laat alle orders zien die er gemaakt zijn.
+![image](https://user-images.githubusercontent.com/94957070/209864986-560f9389-1a0a-40f6-ab7f-aa43de000a5a.png)
+> PUT "/orders/{order_id}" Hiermee kan ik een bepaalde order aanpassen als je de orderid meegeeft.
+![image](https://user-images.githubusercontent.com/94957070/209865068-52b79a9f-4fae-4fe4-abbf-442c4b193554.png)
+> DELETE "/orders/{order_id}" Hiermee kan je een order deleten aan de hand van een ordernummer.
+![image](https://user-images.githubusercontent.com/94957070/209865140-184fe865-3ee8-497c-9168-fe039274a395.png)
+> GET "/products" Dit laat alle mogelijke producten zien.
+![image](https://user-images.githubusercontent.com/94957070/209865190-20e7b2f9-5112-4670-b2f9-81f1406f31f4.png)
+> POST "/products" Hiermee kan je een nieuw product aanmaken.
+![image](https://user-images.githubusercontent.com/94957070/209865271-243ccb73-c27d-4237-94a2-e0443a9d70d6.png)
+> GET "/users/me" Dit laat alle data zien van de gebruiken die is ingelogd via de token.
+![image](https://user-images.githubusercontent.com/94957070/209865330-c7d5f1ce-9d23-42ff-afbd-d78f923c7d63.png)
 
 
 ## OpenAPI Docs Screenshots
