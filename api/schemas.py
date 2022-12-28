@@ -17,6 +17,7 @@ class Order(OrderBase):
     orderedAt: str
     status: str
     owner_id: int
+    product_id: int
 
     class Config:
         orm_mode = True
