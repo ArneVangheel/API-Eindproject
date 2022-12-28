@@ -68,7 +68,7 @@ def get_customer_by_id(user_id: int, db: Session = Depends(get_db), token: str =
     return db_user
 
 
-@app.post("/customers/{customer_id}/orders/", response_model=schemas.Order)
+@app.post("/customers/{customer_id}/orders", response_model=schemas.Order)
 def create_order_for_customer(customer_id: int, item: schemas.OrderCreate, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
     #controleer of het product_id bestaat, dus dat er een product op dit id is.
     db_user = crud.get_product(db, product_id=item.product_id)
