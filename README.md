@@ -34,6 +34,9 @@ Als project heb ik ervoor gekozen om een order api te maken. Dit is allemaal met
    * Meer endpoints dan nodig
 
 ## Postman (API Testing)
+> POST "/register" Hiermee kan je een account aanmaken die je later kunt gebruiken om de token op te vragen.
+![image](https://user-images.githubusercontent.com/94957070/209864116-5dbed187-1826-4a4c-abb8-5268b37708c3.png)
+
 
 
 ## OpenAPI Docs Screenshots
