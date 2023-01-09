@@ -49,7 +49,7 @@ def delete_order(db: Session, order_id = int):
     db_item = db.query(models.Order).filter(models.Order.id == order_id).first()
     db.delete(db_item)
     db.commit()
-    return None
+    return {"detail": "The order has been deleted"}
 
 
 def get_order(db: Session, order_id: int):
