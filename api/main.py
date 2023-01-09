@@ -102,8 +102,6 @@ def delete_order(order_id: int, db: Session = Depends(get_db), token: str = Depe
         raise HTTPException(status_code=400, detail="There is no Order registered")
     #Zoja, verwijder de order
     items = crud.delete_order(db, order_id=order_id)
-    if not items:
-        raise HTTPException(status_code=400, detail="The order has been deleted")
     return items
 
 @app.get("/products", response_model=list[schemas.Product])
