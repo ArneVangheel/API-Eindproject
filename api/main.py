@@ -1,22 +1,27 @@
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
-
+import os
 import crud
 import models
 import schemas
 import auth
-import os
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+from database import SessionLocal, engine
+
+print("We are in the main.......")
 if not os.path.exists('.\sqlitedb'):
+    print("Making folder.......")
     os.makedirs('.\sqlitedb')
 
-#"sqlite:///./sqlitedb/sqlitedata.db"
+print("Creating tables.......")
 models.Base.metadata.create_all(bind=engine)
+print("Tables created.......")
 
 app = FastAPI()
+security = HTTPBasic()
 
 origins = [
     "http://localhost/",
@@ -45,78 +50,44 @@ def get_db():
     finally:
         db.close()
 
-
-@app.post("/register", response_model=schemas.Customer)
-def create_customer(customer: schemas.CustomerCreate, db: Session = Depends(get_db)):
-    db_user = crud.get_customer_by_email(db, email=customer.email)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
-    return crud.create_customer(db=db, customer=customer)
-
-
-@app.get("/customers", response_model=list[schemas.Customer])
-def get_customer(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    users = crud.get_customers(db, skip=skip, limit=limit)
-    return users
+@app.post("/code", response_model=schemas.Codes)
+def create_code(code: schemas.CodesCreate, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    db_code = crud.get_code_by_code(db, code=code.code)
+    if db_code:
+        raise HTTPException(status_code=400, detail="Code already registered")
+    return crud.create_code(db=db, code=code)
 
 
-@app.get("/customers/{user_id}", response_model=schemas.Customer)
-def get_customer_by_id(user_id: int, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    db_user = crud.get_customer(db, user_id=user_id)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="Customer not found")
-    return db_user
+@app.get("/code", response_model=list[schemas.Codes])
+def read_codes(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    codes = crud.get_codes(db, skip=skip, limit=limit)
+    return codes
 
+@app.get("/check_code/{code}")
+def check_codes(code: str, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    db_code = crud.get_code_by_code(db, code=code)
+    if db_code:
+        return db_code
+    else:
+        return(False)
 
-@app.post("/customers/{customer_id}/orders", response_model=schemas.Order)
-def create_order_for_customer(customer_id: int, item: schemas.OrderCreate, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    #controleer of het product_id bestaat, dus dat er een product op dit id is.
-    db_user = crud.get_product(db, product_id=item.product_id)
-    if not db_user:
-        raise HTTPException(status_code=400, detail="There is no Product registered")
+@app.delete("/code/{code}")
+def delete_order(code: str, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    #Controleer of er een code op dit id staat
+    db_code = crud.get_code_by_code(db, code=code)
+    if not db_code:
+        raise HTTPException(status_code=400, detail="There is no Code registered")
+    #Zoja, verwijder de code
+    code = crud.delete_code(db, code=code)
+    return code
 
-    return crud.create_customer_order(db=db, item=item, user_id=customer_id)
-
-
-@app.get("/orders", response_model=list[schemas.Order])
-def get_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    items = crud.get_orders(db, skip=skip, limit=limit)
-    return items
-
-
-@app.put("/orders/{order_id}", response_model=schemas.Order)
-def edit_order(order_id: int, item: schemas.OrderEdit, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    #Controleer of er een order op dit id staat
-    db_order = crud.get_order(db, order_id=order_id)
-    if not db_order:
-        raise HTTPException(status_code=400, detail="There is no Order registered")
-    db_item = crud.edit_order(db, item, order_id=order_id)
+@app.put("/code/{code}", response_model=schemas.Codes)
+def edit_code(code: str, item: schemas.CodesEdit, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    db_code = crud.get_code_by_code(db, code=code)
+    if not db_code:
+        raise HTTPException(status_code=400, detail="There is no code registered")
+    db_item = crud.edit_code(db, item, code=code)
     return db_item
-
-
-@app.delete("/orders/{order_id}")
-def delete_order(order_id: int, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    #Controleer of er een order op dit id staat
-    db_order = crud.get_order(db, order_id=order_id)
-    if not db_order:
-        raise HTTPException(status_code=400, detail="There is no Order registered")
-    #Zoja, verwijder de order
-    items = crud.delete_order(db, order_id=order_id)
-    return items
-
-@app.get("/products", response_model=list[schemas.Product])
-def get_products(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    products = crud.get_products(db, skip=skip, limit=limit)
-    return products
-
-@app.post("/products", response_model=schemas.Product)
-def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    #controleer of er al een product op die naam staat, als dit het geval is geeft dan een exception status.
-    db_product = crud.get_product_by_name(db, product_name=product.product_name)
-    if db_product:
-        raise HTTPException(status_code=400, detail="This Product is already registered")
-    print(product)
-    return crud.create_product(db=db, item=product)
 
 
 @app.post("/token")
@@ -129,11 +100,6 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = auth.create_access_token(
-        data={"sub": user.email}
+        data={"sub": user}
     )
     return {"access_token": access_token, "token_type": "bearer"}
-
-@app.get("/users/me", response_model=schemas.Customer)
-def read_users_me(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    current_user = auth.get_current_customer(db, token)
-    return current_user
